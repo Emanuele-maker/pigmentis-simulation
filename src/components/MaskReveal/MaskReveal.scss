@@ -1,0 +1,73 @@
+.reveal-viewport {
+  height: 95vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+  .image-stack {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .img-layer {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    /* transition: clip-path [duration] [delay] [timing] */
+    transition: clip-path 2s ease-in-out, opacity 0.5s ease 2s; 
+  }
+
+  // --- Initial States ---
+  
+  .mask {
+    z-index: 2;
+    clip-path: inset(0 100% 0 0); // Hidden to the right
+  }
+
+  .complete {
+    z-index: 3;
+    clip-path: inset(0 100% 0 0); // Hidden to the right
+  }
+
+  // --- Step 1: Reveal Mask ---
+  &.step-1 {
+    .mask {
+      clip-path: inset(0 0 0 0); // Wipe in
+    }
+  }
+
+  // --- Step 2: Reveal Complete ---
+  &.step-2 {
+    // Keep mask visible so complete wipes over it
+    .mask {
+      clip-path: inset(0 0 0 0);
+    }
+
+    .complete {
+      clip-path: inset(0 0 0 0); // Wipe in (same motion as mask)
+    }
+
+    // After the 2s wipe is done, hide the layers underneath
+    .base, .mask {
+      opacity: 0; 
+    }
+  }
+
+  .instructions {
+    position: absolute;
+    bottom: 30px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: 10;
+  }
+}

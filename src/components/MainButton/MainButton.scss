@@ -1,0 +1,42 @@
+.main-btn {
+    padding: 5rem 3.5rem;
+    font-family: "TASA Orbiter", sans-serif;
+    background-color: rgb(56, 119, 255);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition-property: background-color color fill stroke;
+    transition-duration: .7s;
+    color: #f0f0f0;
+    display: flex;
+    gap: .2rem;
+    align-items: center;
+    font-size: 1.3vw;
+
+    &:hover {
+        background-color: lighten(rgb(56, 119, 255), 20%);
+        color: #0F0F0F;
+        svg {
+            fill: #0F0F0F;
+            stroke: #0F0F0F;
+        }
+    }
+}
+
+.orange {
+    background-color: rgb(204, 135, 44);
+
+    &:hover {
+        background-color: ligthen(rgb(204, 135, 44), 15%);
+    }
+}
+
+.inactive {
+    background-color: grey;
+    cursor: unset;
+
+    &:hover {
+        background-color: grey;
+        color: #f0f0f0;
+    }
+}
