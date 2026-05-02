@@ -14,10 +14,16 @@ export default function MaskReveal() {
     }
   }, []);
 
+    const handleTouch = useCallback((event) => setStep((prev) => (prev < 2 ? prev + 1 : prev)), []);
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [handleKeyPress]);
+    window.addEventListener("touchstart", handleTouch);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("touchstart", handleTouch);
+    }
+  }, [handleKeyPress, handleTouch]);
 
   return (
     <div className={`reveal-viewport step-${step}`}>
